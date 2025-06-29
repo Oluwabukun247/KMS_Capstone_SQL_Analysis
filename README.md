@@ -272,6 +272,7 @@ LEFT JOIN Order_Status os ON k.Order_ID = os.Order_ID;
 ```
 
 ``` Query
+
 SELECT DISTINCT Customer_Name, Customer_Segment, Return_Status
 FROM VW_KMSOrderStatus_tbl
 WHERE Return_Status = 'Returned';
@@ -286,13 +287,15 @@ WHERE Return_Status = 'Returned';
 
 11. Was the shipping cost spent appropriately based on Order Priority?
 
-```  Query
+```  SQL
+
 SELECT Order_Priority, Ship_Mode,
        COUNT(*) AS OrderCount,
        SUM(Shipping_Cost) AS TotalShippingCost
 FROM KMS
 GROUP BY Order_Priority, Ship_Mode
 ORDER BY Order_Priority, TotalShippingCost DESC;
+
 ```
 
 
@@ -355,7 +358,7 @@ The analysis reveals the importance of customer segmentation, shipping optimizat
 
 **Role:**  Data Analyst | SQL | Excel | Power BI | Tableau | ODK | Google Form | Commcare 
 
-**Connect:** [linkedin]([https://www.linkedin.com/in/oluwabukolaaba])
+**Connect:** [linkedin][https://www.linkedin.com/in/oluwabukolaaba]
 
 
 
