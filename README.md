@@ -44,8 +44,7 @@ Analyze return behaviors.
 | Tool            | Purpose                          |
 |----------------|----------------------------------|
 | SQL Server      | Database setup and SQL queries  |
-| SSMS            | SQL Server Management Interface | | Excel   | for data import/export ) |
-
+| SSMS            | SQL Server Management Interface for query execution| 
 
 ---
 
@@ -63,24 +62,11 @@ Then I imported the cleaned CSV dataset into a table named KMS using the Import 
 
 1. Which product category had the highest sales?
 
-SELECT Product_Category, SUM(Sales) AS TotalSales
-
+-- SELECT Product_Category, SUM(Sales) AS TotalSales
 FROM KMS
-
 GROUP BY Product_Category
-
 ORDER BY TotalSales DESC;
-
--- SQL Query Syntax
-SELECT 
-    Product_Category, 
-    SUM(Sales) AS TotalSales
-FROM 
-    KMS
-GROUP BY 
-    Product_Category
-ORDER BY 
-    TotalSales DESC;
+-- 
 
 
 📊 Result:
