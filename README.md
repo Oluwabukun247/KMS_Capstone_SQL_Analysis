@@ -53,21 +53,24 @@ Analyze return behaviors.
 
 Before running the queries, I created a SQL Server database named:
 
+```  SQL
 CREATE DATABASE Capstone_Project;
+```
 
 Then I imported the cleaned CSV dataset into a table named KMS using the Import Flat File.
-
 
 ❓ Business Questions & SQL Queries
 
 1. Which product category had the highest sales?
 
--- SELECT Product_Category, SUM(Sales) AS TotalSales
+``` SQL
+
+SELECT Product_Category, SUM(Sales) AS TotalSales
 FROM KMS
 GROUP BY Product_Category
 ORDER BY TotalSales DESC;
--- 
 
+```
 
 📊 Result:
 
@@ -77,13 +80,15 @@ Furniture: $5,178,590.51
 
 Office Supplies: $3,752,762.10
 
-*Insight:* Top 1 product category *Technology* drives the highest sales with total sales of $5,984,248.30, indicating strong demand and potential for further growth.
+**Insight:** Top 1 product category *Technology* drives the highest sales with total sales of $5,984,248.30, indicating strong demand and potential for further growth.
 
-*Recommendation:* Allocate more marketing resources and inventory to the Technology category to maximize sales and revenue potential.
+**Recommendation:** Allocate more marketing resources and inventory to the Technology category to maximize sales and revenue potential.
 
 
 ---
 2. What are the Top 3 and Bottom 3 regions in terms of sales?
+
+```  SQL
 
 -- Top 3
 SELECT TOP 3 Region, SUM(Sales) AS TotalSales
@@ -91,11 +96,7 @@ FROM KMS
 GROUP BY Region
 ORDER BY TotalSales DESC;
 
--- Bottom 3
-SELECT TOP 3 Region, SUM(Sales) AS TotalSales
-FROM KMS
-GROUP BY Region
-ORDER BY TotalSales ASC;
+```
 
 📊 Top Regions:
 
@@ -106,6 +107,16 @@ Ontario: $3,063,212.55
 Prairie: $2,837,304.59
 
 
+```   SQL
+
+-- Bottom 3
+SELECT TOP 3 Region, SUM(Sales) AS TotalSales
+FROM KMS
+GROUP BY Region
+ORDER BY TotalSales ASC;
+
+```
+
 📉 Bottom Regions:
 
 Nunavut: $116,376.47
@@ -115,24 +126,25 @@ NW Territories: $800,847.34
 Yukon: $975,867.39
 
 
-*Insight:* Sales in Nunavut and NW Territories are significantly low.
+**Insight:** Sales in Nunavut and NW Territories are significantly low.
 
-*Recommendation:* Investigate barriers to sales in low-performing regions.
+**Recommendation:** Investigate barriers to sales in low-performing regions.
 
 
 ---
 
 3. Total sales of appliances in Ontario?
 
+```  SQL 
 SELECT SUM(Sales) AS TotalApplianceSale
 FROM KMS
 WHERE Product_Sub_Category = 'Appliances' AND Region = 'Ontario';
-
+```
 📊 Result: $202,346.84
 
-*Insight:* Appliances make a decent contribution in Ontario.
+**Insight:** Appliances make a decent contribution in Ontario.
 
-*Recommendation:* Consider bundling offers for appliances in high-volume regions.
+**Recommendation:** Consider bundling offers for appliances in high-volume regions.
 
 ---
 
