@@ -1,12 +1,5 @@
 # KMS_Capstone_SQL_Analysis
 
-📁 Repository Name: KMS_Capstone_SQL_Analysis
-
-📌 Project Title
-
-Capstone Project: Customer & Sales Insights for KMS – SQL Analysis
-
-📄 Project Description
 
 I am excited to share my latest SQL capstone project explores the Kultra Mega Stores Inventory sales to extract actionable insights on customer behavior, product performance, regional sales trends, shipping costs, and profitability. The goal is to provide KMS management with data-driven recommendations to boost revenue, retain valuable customers, and improve business operations.
 
@@ -18,7 +11,7 @@ I am excited to share my latest SQL capstone project explores the Kultra Mega St
 3. [Tools Used](#tools-used)
 4. [Database Creation & Dataset Import](#database-creation--dataset-import)
 5. [Business Questions & SQL Queries
-](#business-questions--sql-queries
+](#business-questions--sql-queries)
 6. [Key Insights & Findings](#key-insights--findings)
 7. [Recommendations](#recommendations)
 8. [Summary](#summary)
