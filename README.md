@@ -1,4 +1,4 @@
-# KMS_Capstone_SQL_Analysis
+# KMS_Capstone_Project_SQL_Analysis
 
 
 I am excited to share my latest SQL capstone project explores the Kultra Mega Stores Inventory sales to extract actionable insights on customer behavior, product performance, regional sales trends, shipping costs, and profitability. The goal is to provide KMS management with data-driven recommendations to boost revenue, retain valuable customers, and improve business operations.
@@ -64,8 +64,11 @@ Then I imported the cleaned CSV dataset into a table named KMS using the Import 
 1. Which product category had the highest sales?
 
 SELECT Product_Category, SUM(Sales) AS TotalSales
+
 FROM KMS
+
 GROUP BY Product_Category
+
 ORDER BY TotalSales DESC;
 
 -- SQL Query Syntax
@@ -334,9 +337,11 @@ The analysis reveals the importance of customer segmentation, shipping optimizat
 
 🔧 Author
 
-Name: [Oluwabukola Aba]
+Name: Oluwabukola Aba
+
 Role:  Data Analyst | SQL | Excel | Power BI | Tableau | ODK | Google Form | Commcare 
-Connect: [LinkedIn Profile] | [Portfolio Website]
+
+Connect: [https://www.linkedin.com/in/oluwabukolaaba]
 
 
 
