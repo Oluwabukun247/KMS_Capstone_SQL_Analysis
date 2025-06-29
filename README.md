@@ -150,103 +150,116 @@ WHERE Product_Sub_Category = 'Appliances' AND Region = 'Ontario';
 
 4. Bottom 10 customers by sales
 
+``` SQL 
 SELECT TOP 10 Customer_Name, SUM(Sales) AS TotalSales
 FROM KMS
 GROUP BY Customer_Name
 ORDER BY TotalSales ASC;
 
+```
+
 📉 Customers with very low lifetime sales (e.g. Jeremy Farry: $85.72)
 
-*Insight:* The bottom 10 customers have very low total sales, indicating potential dormancy or one-time buyers.
+**Insight:** The bottom 10 customers have very low total sales, indicating potential dormancy or one-time buyers.
 
-*Recommendation:* Offer personalized outreach, exclusive discounts, and targeted product recommendations to re-engage these customers and increase revenue.
+**Recommendation:** Offer personalized outreach, exclusive discounts, and targeted product recommendations to re-engage these customers and increase revenue.
 
 
 ---
 
 5. Which shipping mode incurred the highest cost?
 
+```  SQL
 SELECT TOP 1 Ship_Mode, SUM(Shipping_Cost) AS TotalShippingCost
 FROM KMS
 GROUP BY Ship_Mode
 ORDER BY TotalShippingCost DESC;
+```
 
 📦 Delivery Truck: $51,971.94
 
-*Insight:* Most expensive shipping mode.
+**Insight:** Most expensive shipping mode.
 
-*Recommendation:*  Negotiate better contracts or optimize shipping frequency.
+**Recommendation:**  Negotiate better contracts or optimize shipping frequency.
 
 
 ---
 
 6. Most valuable customers and their purchases
 
+``` SQL
+
 SELECT TOP 10 Customer_Name, SUM(Sales) AS TotalSales, COUNT(DISTINCT Product_Name) AS UniqueProducts
 FROM KMS
 GROUP BY Customer_Name
 ORDER BY TotalSales DESC;
+```
+**Top:** Emily Phan ($117,124.43, 10 unique products)
 
-Top: Emily Phan ($117,124.43, 10 unique products)
+**Insight:**  Loyal, high-value customers buy across categories.
 
-*Insight:*  Loyal, high-value customers buy across categories.
-
-*Recommendation:*: Implement a loyalty program to retain top 10 customers.
+**Recommendation:** Implement a loyalty program to retain top 10 customers.
 
 
 ---
 
 7. Highest sales from Small Business customers
-
+   
+``` SQL 
 SELECT TOP 1 Customer_Name, SUM(Sales) AS TotalSales
 FROM KMS
 WHERE Customer_Segment = 'Small Business'
 GROUP BY Customer_Name
 ORDER BY TotalSales DESC;
+```
 
 👤 Dennis Kane: $75,967.59
 
- *Insight:*: small business customers are valuable Dennis Kane generated $75,967.59 in sales.
+ **Insight:** small business customers are valuable Dennis Kane generated $75,967.59 in sales.
 
-*Recommendation:* Target small business customers, develop targeted marketing campaigns.
+**Recommendation:** Target small business customers, develop targeted marketing campaigns.
 
 ---
 
 8. Corporate customer with most orders (2009–2012)
 
+```  SQL 
 SELECT TOP 1 Customer_Name, COUNT(DISTINCT Order_ID) AS OrderCount
 FROM KMS
 WHERE Customer_Segment = 'Corporate'
 GROUP BY Customer_Name
 ORDER BY OrderCount DESC;
+```
 
 📦 Adam Hart: 18 orders
 
-*Insight:* Corporate customer loyalty, Adam Hart placed 18 orders between 2009-2012.
+**Insight:** Corporate customer loyalty, Adam Hart placed 18 orders between 2009-2012.
 
-*Recommendation:* Nurture Corporate relationship, retain and expand relationships with loyal customers.
-
+**Recommendation:** Nurture Corporate relationship, retain and expand relationships with loyal customers.
 
 ---
 
 9. Most profitable Consumer customer
 
+``` SQL 
 SELECT TOP 1 Customer_Name, SUM(Profit) AS TotalProfit
 FROM KMS
 WHERE Customer_Segment = 'Consumer'
 GROUP BY Customer_Name
 ORDER BY TotalProfit DESC;
+```
 
 💰 Emily Phan: $34,005.44
 
-*Insight:* Profitable Consumer customers, Emily Phan generated $34,005.44 in profit.
+**Insight:** Profitable Consumer customers, Emily Phan generated $34,005.44 in profit.
 
-*Recommendation:*  Personalized engagement, offer loyalty programs to high-value Consumer customers.
+**Recommendation:**  Personalized engagement, offer loyalty programs to high-value Consumer customers.
 
 ---
 
 10. Customers who returned items and their segment
 
+``` SQL 
 -- View Creation
 CREATE VIEW VW_KMSOrderStatus_tbl AS
 SELECT k.*, CASE 
@@ -256,34 +269,37 @@ END AS Return_Status
 FROM KMS k
 LEFT JOIN Order_Status os ON k.Order_ID = os.Order_ID;
 
--- Query
+```
+
+``` Query
 SELECT DISTINCT Customer_Name, Customer_Segment, Return_Status
 FROM VW_KMSOrderStatus_tbl
 WHERE Return_Status = 'Returned';
+```
+🔁 **Result:** 419 unique customers returned items.
 
-🔁 *Result:* 419 unique customers returned items.
+**Insight:** Returns may indicate issues with product quality, sizing, or customer expectations.
 
-*Insight:* Returns may indicate issues with product quality, sizing, or customer expectations.
-
-*Recommendation:* Analyze return reasons, improve product quality, enhance customer experience, and develop segment-specific strategies to reduce returns and improve customer satisfaction.
+**Recommendation:** Analyze return reasons, improve product quality, enhance customer experience, and develop segment-specific strategies to reduce returns and improve customer satisfaction.
 
 ---
 
 11. Was the shipping cost spent appropriately based on Order Priority?
 
--- Query
+```  Query
 SELECT Order_Priority, Ship_Mode,
        COUNT(*) AS OrderCount,
        SUM(Shipping_Cost) AS TotalShippingCost
 FROM KMS
 GROUP BY Order_Priority, Ship_Mode
 ORDER BY Order_Priority, TotalShippingCost DESC;
+```
 
 
-*Insight:* The company's shipping cost allocation doesn't fully align with order priorities, as the fastest shipping method (Express Air) is used less often for critical orders (200 orders, $1742.10).  while the slowest but most economical method (Delivery Truck) is used more often for critical orders (228 orders, $10783.82).
+**Insight:** The company's shipping cost allocation doesn't fully align with order priorities, as the fastest shipping method (Express Air) is used less often for critical orders (200 orders, $1742.10).  while the slowest but most economical method (Delivery Truck) is used more often for critical orders (228 orders, $10783.82).
 
 
-*Recommendation:* To optimize, KMS should increase Express Air usage for critical orders to ensure timely delivery, while reserving Delivery Truck for lower-priority orders to minimize costs, thereby balancing shipping speed and expense according to order priority.
+**Recommendation:** To optimize, KMS should increase Express Air usage for critical orders to ensure timely delivery, while reserving Delivery Truck for lower-priority orders to minimize costs, thereby balancing shipping speed and expense according to order priority.
 
 
 ---
@@ -335,11 +351,11 @@ The analysis reveals the importance of customer segmentation, shipping optimizat
 
 🔧 Author
 
-Name: Oluwabukola Aba
+**Name:** Oluwabukola Aba
 
-Role:  Data Analyst | SQL | Excel | Power BI | Tableau | ODK | Google Form | Commcare 
+**Role:**  Data Analyst | SQL | Excel | Power BI | Tableau | ODK | Google Form | Commcare 
 
-Connect: [https://www.linkedin.com/in/oluwabukolaaba]
+**Connect:** [linkedin]([https://www.linkedin.com/in/oluwabukolaaba])
 
 
 
